@@ -46,6 +46,7 @@ export default {
       user.age = this.getAge(user.birthday);
       this.users.push(user);
       localStorage.setItem("users", JSON.stringify(this.users));
+      alert("Usuario registrado correctamente");
     });
   },
 };

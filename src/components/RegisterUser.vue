@@ -12,16 +12,25 @@ export default {
   },
   methods: {
     registerUser() {
-      this.emitter.emit("new-user", this.user);
-      this.user = {
-        first_name: "",
-        last_name: "",
-        email: "",
-        birthday: "",
-      };
+      if (
+        this.user.email != "" ||
+        this.user.first_name != "" ||
+        this.user.last_name != "" ||
+        this.user.birthday != ""
+      ) {
+        this.emitter.emit("new-user", this.user);
+        this.user = {
+          first_name: "",
+          last_name: "",
+          email: "",
+          birthday: "",
+        };
+      } else {
+        alert("Porfavor llena todos los campos");
+      }
     },
-  }
-}
+  },
+};
 </script>
 
 <template>
@@ -41,7 +50,12 @@ export default {
       </div>
       <div class="register-form-inputs-item">
         <span>Nombre:</span>
-        <input type="text" id="name" placeholder="..." v-model="user.first_name" />
+        <input
+          type="text"
+          id="name"
+          placeholder="..."
+          v-model="user.first_name"
+        />
       </div>
       <div class="register-form-inputs-item">
         <span>Apellido:</span>
@@ -71,7 +85,7 @@ export default {
 </template>
 
 <style scoped>
-h1{
+h1 {
   font-size: 30px;
   color: #fff;
   text-transform: uppercase;
